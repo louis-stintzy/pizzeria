@@ -25,23 +25,4 @@ const addToCart = (
   return updatedShoppingCart;
 };
 
-// const addToCart = (name, price, quantity) => {
-//   const articles = shoppingCart.articles;
-//   const itemAlreadyInCart = articles.find((article) => article.name === name);
-//   console.log(itemAlreadyInCart);
-//   if (itemAlreadyInCart) {
-//     itemAlreadyInCart.quantity += quantity;
-//     let total = shoppingCart.total + price * quantity;
-//     total = Math.round(total * 100) / 100;
-//     setShoppingCart({ articles: articles, total: total });
-//     return;
-//   }
-//   articles.push({ name: name, price: price, quantity: quantity });
-//   let total = shoppingCart.total;
-//   const amoutToAdd = price * quantity;
-//   total += amoutToAdd;
-//   total = Math.round(total * 100) / 100;
-//   setShoppingCart({ articles: articles, total: total });
-// };
-
 export default addToCart;

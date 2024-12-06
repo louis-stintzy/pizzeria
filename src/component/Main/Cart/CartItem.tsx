@@ -19,7 +19,7 @@ function CartItem({ name, price, quantity }: CartItemProps) {
         <span>
           {name} x {quantity}{' '}
         </span>
-        <span>{price * quantity} €</span>
+        <span>{(price * quantity).toFixed(2)} €</span>
       </p>
     </>
   );

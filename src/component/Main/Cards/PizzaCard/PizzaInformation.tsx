@@ -43,7 +43,7 @@ function PizzaInformation({ name, toppings, price }: PizzaInformationProps) {
         {toppings}
       </p>
       <p className="card-info__price" style={cardInfoPriceStyle}>
-        {price} €
+        {price.toFixed(2)} €
       </p>
     </div>
   );

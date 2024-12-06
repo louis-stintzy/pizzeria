@@ -12,7 +12,9 @@ function CartTotal({ amount }: CartTotalProps) {
     marginTop: '1rem',
   };
   return (
-    <p className="cart-total" style={cartTotalStyle}>{`Total : ${amount}`}</p>
+    <p className="cart-total" style={cartTotalStyle}>{`Total : ${amount.toFixed(
+      2
+    )}`}</p>
   );
 }
 
