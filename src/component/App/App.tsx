@@ -17,6 +17,8 @@ function App() {
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: '#f8f8f8',
+    lineHeight: '1.6',
+    fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif, sans-serif',
   };
   return (
     <>
