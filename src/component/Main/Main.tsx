@@ -17,8 +17,9 @@ function Main({
 }: MainProps) {
   const mainContainerStyle: React.CSSProperties = {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     padding: '10px',
+    margin: '2rem',
   };
   return (
     <div className="main-container" style={mainContainerStyle}>

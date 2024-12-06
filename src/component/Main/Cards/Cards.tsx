@@ -17,7 +17,10 @@ function Cards({
 }: CardsProps) {
   const pizzasListStyle: React.CSSProperties = {
     display: 'flex',
+    justifyContent: 'start',
     flexWrap: 'wrap',
+    maxWidth: '1200px',
+    gap: '2rem',
   };
   return (
     <div className="pizzas-list" style={pizzasListStyle}>

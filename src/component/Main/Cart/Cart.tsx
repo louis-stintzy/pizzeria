@@ -14,6 +14,7 @@ function Cart({ shoppingCart }: CartProps) {
     justifyContent: 'space-between',
     width: '300px',
     height: '100%',
+    marginLeft: '2rem',
     backgroundColor: 'white',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
     borderRadius: '10px',

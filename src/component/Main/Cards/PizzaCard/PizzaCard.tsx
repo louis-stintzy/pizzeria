@@ -31,7 +31,6 @@ function PizzaCard({
     width: '282px',
     height: '455px',
     alignItems: 'center',
-    margin: '1rem',
     borderRadius: '0.5rem',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
     backgroundColor: 'white',
