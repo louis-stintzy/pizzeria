@@ -13,16 +13,12 @@ function App() {
     articles: [],
     total: 0,
   });
-  const appContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: '#f5f5f5',
-    lineHeight: '1.6',
-    fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif, sans-serif',
-  };
   return (
     <>
-      <div className="app-container" style={appContainerStyle}>
+      <div
+        id="app-container"
+        className="flex flex-col bg-zinc-100 leading-relaxed font-sans"
+      >
         <Header />
         <Main
           setQuantityModalIsOpen={setQuantitySelectionModalisOpen}
