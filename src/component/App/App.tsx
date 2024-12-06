@@ -16,7 +16,7 @@ function App() {
   const appContainerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#f5f5f5',
     lineHeight: '1.6',
     fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif, sans-serif',
   };
