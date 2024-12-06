@@ -24,24 +24,10 @@ function PizzaCard({
   setQuantityModalIsOpen,
   setArticleToAdd,
 }: CardProps) {
-  const cardContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '282px',
-    height: '455px',
-    alignItems: 'center',
-    borderRadius: '0.5rem',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    backgroundColor: 'white',
-    overflow: 'hidden',
-  };
-
   return (
     <div
-      className="card-container"
-      id={`pizzaId${id}`}
-      style={cardContainerStyle}
+      id={`card-container-pizza-id${id}`}
+      className="flex flex-col justify-between w-72 items-center rounded-md shadow-md bg-white overflow-hidden"
     >
       <PizzaPicture picture={picture} name={name} />
       <PizzaInformation name={name} toppings={toppings} price={price} />

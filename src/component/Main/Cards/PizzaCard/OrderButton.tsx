@@ -20,20 +20,10 @@ function OrderButton({
     setArticleToAdd({ picture, name, price, quantity: 1 });
   };
 
-  const cardOrderStyle: React.CSSProperties = {
-    width: '218px',
-    padding: '0.5rem 1rem',
-    backgroundColor: '#df0000',
-    color: 'white',
-    border: 'none',
-    borderRadius: '0.5rem',
-    cursor: 'pointer',
-    marginBottom: '0.5rem',
-  };
   return (
     <button
-      className="card-order"
-      style={cardOrderStyle}
+      id="card-order"
+      className="w-64 bg-red-600 text-red-50 border-none rounded-md my-4 h-8"
       onClick={handleOrderButton}
     >
       Commander

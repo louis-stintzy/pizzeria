@@ -15,15 +15,11 @@ function Cards({
   setQuantityModalIsOpen,
   setArticleToAdd,
 }: CardsProps) {
-  const pizzasListStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'start',
-    flexWrap: 'wrap',
-    maxWidth: '1200px',
-    gap: '2rem',
-  };
   return (
-    <div className="pizzas-list" style={pizzasListStyle}>
+    <div
+      id="pizzas-list"
+      className="flex flex-wrap justify-start gap-8 max-w-7xl"
+    >
       {pizzas.map((pizza) => (
         <PizzaCard
           key={pizza.id}
