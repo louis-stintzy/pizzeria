@@ -1,4 +1,3 @@
-import { ShoppingCart } from '../../../../@types/article';
 import OrderButton from './OrderButton';
 import PizzaInformation from './PizzaInformation';
 import PizzaPicture from './PizzaPicture';
@@ -9,19 +8,9 @@ interface CardProps {
   picture: string;
   toppings: string;
   price: number;
-  shoppingCart: ShoppingCart;
-  setShoppingCart: (shoppingCart: ShoppingCart) => void;
-  // setArticleToAdd: (article: Article | null) => void;
 }
 
-function PizzaCard({
-  id,
-  name,
-  picture,
-  toppings,
-  price,
-}: // setArticleToAdd,
-CardProps) {
+function PizzaCard({ id, name, picture, toppings, price }: CardProps) {
   return (
     <div
       id={`card-container-pizza-id${id}`}
@@ -29,12 +18,7 @@ CardProps) {
     >
       <PizzaPicture picture={picture} name={name} />
       <PizzaInformation name={name} toppings={toppings} price={price} />
-      <OrderButton
-        picture={picture}
-        name={name}
-        price={price}
-        // setArticleToAdd={setArticleToAdd}
-      />
+      <OrderButton picture={picture} name={name} price={price} />
     </div>
   );
 }

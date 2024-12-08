@@ -1,37 +1,26 @@
 import { useState } from 'react';
 import useStore from '../../store/store';
-import { ShoppingCart } from '../../@types/article';
 import Modal from './Modal';
 import addToCart from '../../utils/addToCart';
 import QuantitySelectionButtons from './QuantitySelectionButtons';
 
-interface QuantitySelectionModalProps {
-  // isOpen: boolean;
-  // article: Article | null;
-  shoppingCart: ShoppingCart;
-  setShoppingCart: (shoppingCart: ShoppingCart) => void;
-}
-
-function QuantitySelectionModal({
-  // isOpen,
-  // article,
-  shoppingCart,
-  setShoppingCart,
-}: QuantitySelectionModalProps) {
+function QuantitySelectionModal() {
   const [quantityToAdd, setQuantityToAdd] = useState<number>(1);
 
-  const article = useStore((state) => state.articleToAdd);
+  const articleToAdd = useStore((state) => state.articleToAdd);
+  const shoppingCart = useStore((state) => state.shoppingCart);
   const setQuantitySelectionModalisOpen = useStore(
     (state) => state.setQuantitySelectionModalisOpen
   );
+  const setShoppingCart = useStore((state) => state.setShoppingCart);
 
   const handleCancel = () => {
     setQuantitySelectionModalisOpen(false);
   };
   const handleAddToCart = () => {
-    if (article) {
-      article.quantity = quantityToAdd;
-      const updatedShoppingCart = addToCart(article, shoppingCart);
+    if (articleToAdd) {
+      articleToAdd.quantity = quantityToAdd;
+      const updatedShoppingCart = addToCart(articleToAdd, shoppingCart);
       console.log(updatedShoppingCart);
       setShoppingCart(updatedShoppingCart);
       setQuantitySelectionModalisOpen(false);
@@ -80,13 +69,13 @@ function QuantitySelectionModal({
       </button>
       <div className="modal-img-container" style={modalImgContainerStyle}>
         <img
-          src={article?.picture}
-          alt={article?.name}
+          src={articleToAdd?.picture}
+          alt={articleToAdd?.name}
           className="modal-img-content"
           style={modalImgContentStyle}
         />
       </div>
-      {article?.name}
+      {articleToAdd?.name}
       <QuantitySelectionButtons
         quantityToAdd={quantityToAdd}
         setQuantityToAdd={setQuantityToAdd}

@@ -1,13 +1,10 @@
-import { ShoppingCart } from '../../../@types/article';
 import CartTotal from './CartTotal';
 import CartTitle from './CartTitle';
 import CartItems from './CartItems';
+import useStore from '../../../store/store';
 
-interface CartProps {
-  shoppingCart: ShoppingCart;
-}
-
-function Cart({ shoppingCart }: CartProps) {
+function Cart() {
+  const shoppingCart = useStore((state) => state.shoppingCart);
   const cartContainerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',

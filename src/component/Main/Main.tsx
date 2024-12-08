@@ -1,14 +1,7 @@
 import Cards from './Cards/Cards';
 import Cart from './Cart/Cart';
-import { ShoppingCart } from '../../@types/article';
 
-interface MainProps {
-  shoppingCart: ShoppingCart;
-  // setArticleToAdd: (article: Article | null) => void;
-  setShoppingCart: (shoppingCart: ShoppingCart) => void;
-}
-
-function Main({ shoppingCart, setShoppingCart }: MainProps) {
+function Main() {
   const mainContainerStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
@@ -17,12 +10,8 @@ function Main({ shoppingCart, setShoppingCart }: MainProps) {
   };
   return (
     <div className="main-container" style={mainContainerStyle}>
-      <Cards
-        shoppingCart={shoppingCart}
-        setShoppingCart={setShoppingCart}
-        // setArticleToAdd={setArticleToAdd}
-      />
-      <Cart shoppingCart={shoppingCart} />
+      <Cards />
+      <Cart />
     </div>
   );
 }

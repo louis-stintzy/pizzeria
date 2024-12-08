@@ -1,17 +1,10 @@
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import Header from '../Header/Header';
-import { useState } from 'react';
 import useStore from '../../store/store';
 import QuantitySelectionModal from '../QuantitySelectionModal/QuantitySelectionModal';
-import { ShoppingCart } from '../../@types/article';
 
 function App() {
-  const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({
-    articles: [],
-    total: 0,
-  });
-
   const quantitySelectionModalisOpen = useStore(
     (state) => state.quantitySelectionModalisOpen
   );
@@ -22,14 +15,9 @@ function App() {
         className="flex flex-col bg-zinc-100 leading-relaxed font-sans"
       >
         <Header />
-        <Main shoppingCart={shoppingCart} setShoppingCart={setShoppingCart} />
+        <Main />
         <Footer />
-        {quantitySelectionModalisOpen && (
-          <QuantitySelectionModal
-            shoppingCart={shoppingCart}
-            setShoppingCart={setShoppingCart}
-          />
-        )}
+        {quantitySelectionModalisOpen && <QuantitySelectionModal />}
       </div>
     </>
   );
