@@ -1,13 +1,9 @@
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import Header from '../Header/Header';
-import useStore from '../../store/store';
 import QuantitySelectionModal from '../QuantitySelectionModal/QuantitySelectionModal';
 
 function App() {
-  const quantitySelectionModalisOpen = useStore(
-    (state) => state.quantitySelectionModalisOpen
-  );
   return (
     <>
       <div
@@ -17,7 +13,7 @@ function App() {
         <Header />
         <Main />
         <Footer />
-        {quantitySelectionModalisOpen && <QuantitySelectionModal />}
+        <QuantitySelectionModal />
       </div>
     </>
   );

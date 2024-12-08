@@ -4,6 +4,9 @@ import addToCart from '../../utils/addToCart';
 import QuantitySelectionButtons from './QuantitySelectionButtons';
 
 function QuantitySelectionModal() {
+  const quantitySelectionModalisOpen = useStore(
+    (state) => state.quantitySelectionModalisOpen
+  );
   const articleToAdd = useStore((state) => state.articleToAdd);
   const quantityToAdd = useStore((state) => state.quantityToAdd);
   const shoppingCart = useStore((state) => state.shoppingCart);
@@ -21,7 +24,6 @@ function QuantitySelectionModal() {
     if (articleToAdd) {
       articleToAdd.quantity = quantityToAdd;
       const updatedShoppingCart = addToCart(articleToAdd, shoppingCart);
-      console.log(updatedShoppingCart);
       setShoppingCart(updatedShoppingCart);
       handleCloseOrCancel();
     }
@@ -50,6 +52,10 @@ function QuantitySelectionModal() {
     border: 'none',
     borderRadius: '0.5rem',
   };
+
+  if (!quantitySelectionModalisOpen) {
+    return null;
+  }
 
   return (
     <Modal
