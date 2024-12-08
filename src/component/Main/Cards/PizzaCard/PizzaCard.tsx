@@ -1,16 +1,14 @@
+import { Pizza } from '../../../../@types/pizza';
 import OrderButton from './OrderButton';
 import PizzaInformation from './PizzaInformation';
 import PizzaPicture from './PizzaPicture';
 
 interface CardProps {
-  id: number;
-  name: string;
-  picture: string;
-  toppings: string;
-  price: number;
+  pizza: Pizza;
 }
 
-function PizzaCard({ id, name, picture, toppings, price }: CardProps) {
+function PizzaCard({ pizza }: CardProps) {
+  const { id, name, picture, toppings, price } = pizza;
   return (
     <div
       id={`card-container-pizza-id${id}`}
