@@ -1,14 +1,14 @@
 import PizzaCard from './PizzaCard/PizzaCard';
 import pizzas from '../../../constants/pizzas';
-import { Article, ShoppingCart } from '../../../@types/article';
+import { ShoppingCart } from '../../../@types/article';
 
 interface CardsProps {
   shoppingCart: ShoppingCart;
   setShoppingCart: (shoppingCart: ShoppingCart) => void;
-  setArticleToAdd: (article: Article | null) => void;
+  // setArticleToAdd: (article: Article | null) => void;
 }
 
-function Cards({ shoppingCart, setShoppingCart, setArticleToAdd }: CardsProps) {
+function Cards({ shoppingCart, setShoppingCart }: CardsProps) {
   return (
     <div
       id="pizzas-list"
@@ -24,7 +24,7 @@ function Cards({ shoppingCart, setShoppingCart, setArticleToAdd }: CardsProps) {
           price={pizza.price}
           shoppingCart={shoppingCart}
           setShoppingCart={setShoppingCart}
-          setArticleToAdd={setArticleToAdd}
+          // setArticleToAdd={setArticleToAdd}
         />
       ))}
     </div>

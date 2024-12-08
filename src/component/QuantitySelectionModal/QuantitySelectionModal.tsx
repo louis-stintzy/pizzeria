@@ -1,25 +1,26 @@
 import { useState } from 'react';
 import useStore from '../../store/store';
-import { Article, ShoppingCart } from '../../@types/article';
+import { ShoppingCart } from '../../@types/article';
 import Modal from './Modal';
 import addToCart from '../../utils/addToCart';
 import QuantitySelectionButtons from './QuantitySelectionButtons';
 
 interface QuantitySelectionModalProps {
-  isOpen: boolean;
-  article: Article | null;
+  // isOpen: boolean;
+  // article: Article | null;
   shoppingCart: ShoppingCart;
   setShoppingCart: (shoppingCart: ShoppingCart) => void;
 }
 
 function QuantitySelectionModal({
-  isOpen,
-  article,
+  // isOpen,
+  // article,
   shoppingCart,
   setShoppingCart,
 }: QuantitySelectionModalProps) {
   const [quantityToAdd, setQuantityToAdd] = useState<number>(1);
 
+  const article = useStore((state) => state.articleToAdd);
   const setQuantitySelectionModalisOpen = useStore(
     (state) => state.setQuantitySelectionModalisOpen
   );
@@ -63,7 +64,6 @@ function QuantitySelectionModal({
 
   return (
     <Modal
-      isOpen={isOpen}
       modalStyle={{
         width: '350px',
         height: '450px',

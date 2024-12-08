@@ -1,8 +1,7 @@
 import useStore from '../../../../store/store';
-import { Article } from '../../../../@types/article';
 
 interface OrderButtonProps {
-  setArticleToAdd: (article: Article | null) => void;
+  // setArticleToAdd: (article: Article | null) => void;
   picture: string;
   name: string;
   price: number;
@@ -12,11 +11,12 @@ function OrderButton({
   picture,
   name,
   price,
-  setArticleToAdd,
-}: OrderButtonProps) {
+}: // setArticleToAdd,
+OrderButtonProps) {
   const setQuantitySelectionModalisOpen = useStore(
     (state) => state.setQuantitySelectionModalisOpen
   );
+  const setArticleToAdd = useStore((state) => state.setArticleToAdd);
 
   const handleOrderButton = () => {
     setQuantitySelectionModalisOpen(true);
