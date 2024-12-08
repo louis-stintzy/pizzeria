@@ -4,17 +4,11 @@ import { Article, ShoppingCart } from '../../@types/article';
 
 interface MainProps {
   shoppingCart: ShoppingCart;
-  setQuantityModalIsOpen: (isOpen: boolean) => void;
   setArticleToAdd: (article: Article | null) => void;
   setShoppingCart: (shoppingCart: ShoppingCart) => void;
 }
 
-function Main({
-  shoppingCart,
-  setQuantityModalIsOpen,
-  setArticleToAdd,
-  setShoppingCart,
-}: MainProps) {
+function Main({ shoppingCart, setArticleToAdd, setShoppingCart }: MainProps) {
   const mainContainerStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
@@ -26,7 +20,6 @@ function Main({
       <Cards
         shoppingCart={shoppingCart}
         setShoppingCart={setShoppingCart}
-        setQuantityModalIsOpen={setQuantityModalIsOpen}
         setArticleToAdd={setArticleToAdd}
       />
       <Cart shoppingCart={shoppingCart} />

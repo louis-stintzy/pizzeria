@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useStore from '../../store/store';
 import { Article, ShoppingCart } from '../../@types/article';
 import Modal from './Modal';
 import addToCart from '../../utils/addToCart';
@@ -9,7 +10,6 @@ interface QuantitySelectionModalProps {
   article: Article | null;
   shoppingCart: ShoppingCart;
   setShoppingCart: (shoppingCart: ShoppingCart) => void;
-  onClose: () => void;
 }
 
 function QuantitySelectionModal({
@@ -17,22 +17,25 @@ function QuantitySelectionModal({
   article,
   shoppingCart,
   setShoppingCart,
-  onClose,
 }: QuantitySelectionModalProps) {
   const [quantityToAdd, setQuantityToAdd] = useState<number>(1);
-  const handleCancel = () => {
-    onClose();
-  };
 
+  const setQuantitySelectionModalisOpen = useStore(
+    (state) => state.setQuantitySelectionModalisOpen
+  );
+
+  const handleCancel = () => {
+    setQuantitySelectionModalisOpen(false);
+  };
   const handleAddToCart = () => {
     if (article) {
       article.quantity = quantityToAdd;
       const updatedShoppingCart = addToCart(article, shoppingCart);
       console.log(updatedShoppingCart);
       setShoppingCart(updatedShoppingCart);
-      onClose();
+      setQuantitySelectionModalisOpen(false);
     }
-    onClose();
+    setQuantitySelectionModalisOpen(false);
   };
 
   const modalImgContainerStyle: React.CSSProperties = {
@@ -61,7 +64,6 @@ function QuantitySelectionModal({
   return (
     <Modal
       isOpen={isOpen}
-      onClose={onClose}
       modalStyle={{
         width: '350px',
         height: '450px',

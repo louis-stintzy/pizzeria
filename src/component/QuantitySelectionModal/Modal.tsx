@@ -4,10 +4,9 @@ interface ModalProps {
   isOpen: boolean;
   children: React.ReactNode;
   modalStyle: React.CSSProperties;
-  onClose: () => void;
 }
 
-function Modal({ isOpen, children, modalStyle, onClose }: ModalProps) {
+function Modal({ isOpen, children, modalStyle }: ModalProps) {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -19,7 +18,7 @@ function Modal({ isOpen, children, modalStyle, onClose }: ModalProps) {
   }, [isOpen]);
 
   return (
-    <dialog ref={modalRef} style={modalStyle} onCancel={onClose}>
+    <dialog ref={modalRef} style={modalStyle}>
       {children}
     </dialog>
   );

@@ -12,7 +12,7 @@ type State = {
   setShoppingCart: (shoppingCart: ShoppingCart) => void;
 };
 
-const useStore = create<State>(
+const useStore = create<State>()(
   devtools(
     (set) => ({
       quantitySelectionModalisOpen: false,

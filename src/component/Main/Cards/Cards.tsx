@@ -5,16 +5,10 @@ import { Article, ShoppingCart } from '../../../@types/article';
 interface CardsProps {
   shoppingCart: ShoppingCart;
   setShoppingCart: (shoppingCart: ShoppingCart) => void;
-  setQuantityModalIsOpen: (isOpen: boolean) => void;
   setArticleToAdd: (article: Article | null) => void;
 }
 
-function Cards({
-  shoppingCart,
-  setShoppingCart,
-  setQuantityModalIsOpen,
-  setArticleToAdd,
-}: CardsProps) {
+function Cards({ shoppingCart, setShoppingCart, setArticleToAdd }: CardsProps) {
   return (
     <div
       id="pizzas-list"
@@ -30,7 +24,6 @@ function Cards({
           price={pizza.price}
           shoppingCart={shoppingCart}
           setShoppingCart={setShoppingCart}
-          setQuantityModalIsOpen={setQuantityModalIsOpen}
           setArticleToAdd={setArticleToAdd}
         />
       ))}

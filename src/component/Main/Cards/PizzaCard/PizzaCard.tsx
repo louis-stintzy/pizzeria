@@ -11,7 +11,6 @@ interface CardProps {
   price: number;
   shoppingCart: ShoppingCart;
   setShoppingCart: (shoppingCart: ShoppingCart) => void;
-  setQuantityModalIsOpen: (isOpen: boolean) => void;
   setArticleToAdd: (article: Article | null) => void;
 }
 
@@ -21,7 +20,6 @@ function PizzaCard({
   picture,
   toppings,
   price,
-  setQuantityModalIsOpen,
   setArticleToAdd,
 }: CardProps) {
   return (
@@ -35,7 +33,6 @@ function PizzaCard({
         picture={picture}
         name={name}
         price={price}
-        setQuantityModalIsOpen={setQuantityModalIsOpen}
         setArticleToAdd={setArticleToAdd}
       />
     </div>
