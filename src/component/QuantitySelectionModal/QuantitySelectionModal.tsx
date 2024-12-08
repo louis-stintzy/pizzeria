@@ -1,21 +1,21 @@
-import { useState } from 'react';
 import useStore from '../../store/store';
 import Modal from './Modal';
 import addToCart from '../../utils/addToCart';
 import QuantitySelectionButtons from './QuantitySelectionButtons';
 
 function QuantitySelectionModal() {
-  const [quantityToAdd, setQuantityToAdd] = useState<number>(1);
-
   const articleToAdd = useStore((state) => state.articleToAdd);
+  const quantityToAdd = useStore((state) => state.quantityToAdd);
   const shoppingCart = useStore((state) => state.shoppingCart);
   const setQuantitySelectionModalisOpen = useStore(
     (state) => state.setQuantitySelectionModalisOpen
   );
+  const setQuantityToAdd = useStore((state) => state.setQuantityToAdd);
   const setShoppingCart = useStore((state) => state.setShoppingCart);
 
-  const handleCancel = () => {
+  const handleCloseOrCancel = () => {
     setQuantitySelectionModalisOpen(false);
+    setQuantityToAdd(1);
   };
   const handleAddToCart = () => {
     if (articleToAdd) {
@@ -23,9 +23,9 @@ function QuantitySelectionModal() {
       const updatedShoppingCart = addToCart(articleToAdd, shoppingCart);
       console.log(updatedShoppingCart);
       setShoppingCart(updatedShoppingCart);
-      setQuantitySelectionModalisOpen(false);
+      handleCloseOrCancel();
     }
-    setQuantitySelectionModalisOpen(false);
+    handleCloseOrCancel();
   };
 
   const modalImgContainerStyle: React.CSSProperties = {
@@ -64,7 +64,7 @@ function QuantitySelectionModal() {
         alignItems: 'center',
       }}
     >
-      <button type="button" onClick={handleCancel}>
+      <button type="button" onClick={handleCloseOrCancel}>
         Cancel
       </button>
       <div className="modal-img-container" style={modalImgContainerStyle}>
@@ -76,10 +76,7 @@ function QuantitySelectionModal() {
         />
       </div>
       {articleToAdd?.name}
-      <QuantitySelectionButtons
-        quantityToAdd={quantityToAdd}
-        setQuantityToAdd={setQuantityToAdd}
-      />
+      <QuantitySelectionButtons />
       <button
         type="button"
         className="modal-add-to-cart-button"

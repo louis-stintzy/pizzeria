@@ -1,14 +1,8 @@
+import useStore from '../../store/store';
 import IncrementButton from './IncrementButton';
 
-interface QuantitySelectionButtonsProps {
-  quantityToAdd: number;
-  setQuantityToAdd: (quantity: number) => void;
-}
-
-function QuantitySelectionButtons({
-  quantityToAdd,
-  setQuantityToAdd,
-}: QuantitySelectionButtonsProps) {
+function QuantitySelectionButtons() {
+  const quantityToAdd = useStore((state) => state.quantityToAdd);
   const quantitySelectionButtonsContainerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
@@ -23,17 +17,9 @@ function QuantitySelectionButtons({
       className="quantity-selection-buttons-container"
       style={quantitySelectionButtonsContainerStyle}
     >
-      <IncrementButton
-        type="decrement"
-        quantityToAdd={quantityToAdd}
-        setQuantityToAdd={setQuantityToAdd}
-      />
+      <IncrementButton type="decrement" />
       <p>{quantityToAdd}</p>
-      <IncrementButton
-        type="increment"
-        quantityToAdd={quantityToAdd}
-        setQuantityToAdd={setQuantityToAdd}
-      />
+      <IncrementButton type="increment" />
     </div>
   );
 }
