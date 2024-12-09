@@ -4,29 +4,20 @@ import {
   useQuantityToAdd,
   useShoppingCart,
 } from '../../store/selectors';
-import {
-  setShoppingCart,
-  setQuantitySelectionModalisOpen,
-  setQuantityToAdd,
-} from '../../store/storeActions';
+import { setShoppingCart } from '../../store/storeActions';
+import handleModalClosing from '../../utils/handleModalClosing';
 
 function AddToCartButton() {
   const articleToAdd = useArticleToAdd();
   const quantityToAdd = useQuantityToAdd();
   const shoppingCart = useShoppingCart();
 
-  const handleModalClosing = () => {
-    setQuantitySelectionModalisOpen(false);
-    setQuantityToAdd(1);
-  };
+  if (!articleToAdd) return null;
 
   const handleAddToCart = () => {
-    if (articleToAdd) {
-      articleToAdd.quantity = quantityToAdd;
-      const updatedShoppingCart = addToCart(articleToAdd, shoppingCart);
-      setShoppingCart(updatedShoppingCart);
-      handleModalClosing();
-    }
+    articleToAdd.quantity = quantityToAdd;
+    const updatedShoppingCart = addToCart(articleToAdd, shoppingCart);
+    setShoppingCart(updatedShoppingCart);
     handleModalClosing();
   };
 
