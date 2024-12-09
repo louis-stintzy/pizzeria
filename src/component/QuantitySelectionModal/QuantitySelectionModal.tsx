@@ -1,38 +1,36 @@
-import { useState } from 'react';
-import { Article, ShoppingCart } from '../../@types/article';
 import Modal from './Modal';
 import addToCart from '../../utils/addToCart';
 import QuantitySelectionButtons from './QuantitySelectionButtons';
-
-interface QuantitySelectionModalProps {
-  isOpen: boolean;
-  article: Article | null;
-  shoppingCart: ShoppingCart;
-  setShoppingCart: (shoppingCart: ShoppingCart) => void;
-  onClose: () => void;
-}
-
-function QuantitySelectionModal({
-  isOpen,
-  article,
-  shoppingCart,
+import {
+  useArticleToAdd,
+  useQuantitySelectionModalisOpen,
+  useQuantityToAdd,
+  useShoppingCart,
+} from '../../store/selectors';
+import {
+  setQuantitySelectionModalisOpen,
+  setQuantityToAdd,
   setShoppingCart,
-  onClose,
-}: QuantitySelectionModalProps) {
-  const [quantityToAdd, setQuantityToAdd] = useState<number>(1);
-  const handleCancel = () => {
-    onClose();
-  };
+} from '../../store/storeActions';
 
+function QuantitySelectionModal() {
+  const quantitySelectionModalisOpen = useQuantitySelectionModalisOpen();
+  const articleToAdd = useArticleToAdd();
+  const quantityToAdd = useQuantityToAdd();
+  const shoppingCart = useShoppingCart();
+
+  const handleCloseOrCancel = () => {
+    setQuantitySelectionModalisOpen(false);
+    setQuantityToAdd(1);
+  };
   const handleAddToCart = () => {
-    if (article) {
-      article.quantity = quantityToAdd;
-      const updatedShoppingCart = addToCart(article, shoppingCart);
-      console.log(updatedShoppingCart);
+    if (articleToAdd) {
+      articleToAdd.quantity = quantityToAdd;
+      const updatedShoppingCart = addToCart(articleToAdd, shoppingCart);
       setShoppingCart(updatedShoppingCart);
-      onClose();
+      handleCloseOrCancel();
     }
-    onClose();
+    handleCloseOrCancel();
   };
 
   const modalImgContainerStyle: React.CSSProperties = {
@@ -58,10 +56,12 @@ function QuantitySelectionModal({
     borderRadius: '0.5rem',
   };
 
+  if (!quantitySelectionModalisOpen) {
+    return null;
+  }
+
   return (
     <Modal
-      isOpen={isOpen}
-      onClose={onClose}
       modalStyle={{
         width: '350px',
         height: '450px',
@@ -73,22 +73,19 @@ function QuantitySelectionModal({
         alignItems: 'center',
       }}
     >
-      <button type="button" onClick={handleCancel}>
+      <button type="button" onClick={handleCloseOrCancel}>
         Cancel
       </button>
       <div className="modal-img-container" style={modalImgContainerStyle}>
         <img
-          src={article?.picture}
-          alt={article?.name}
+          src={articleToAdd?.picture}
+          alt={articleToAdd?.name}
           className="modal-img-content"
           style={modalImgContentStyle}
         />
       </div>
-      {article?.name}
-      <QuantitySelectionButtons
-        quantityToAdd={quantityToAdd}
-        setQuantityToAdd={setQuantityToAdd}
-      />
+      {articleToAdd?.name}
+      <QuantitySelectionButtons />
       <button
         type="button"
         className="modal-add-to-cart-button"

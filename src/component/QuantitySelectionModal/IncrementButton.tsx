@@ -1,14 +1,13 @@
+import { useQuantityToAdd } from '../../store/selectors';
+import { setQuantityToAdd } from '../../store/storeActions';
+
 interface IncrementButtonProps {
   type: 'increment' | 'decrement';
-  quantityToAdd: number;
-  setQuantityToAdd: (quantity: number) => void;
 }
 
-function IncrementButton({
-  type,
-  quantityToAdd,
-  setQuantityToAdd,
-}: IncrementButtonProps) {
+function IncrementButton({ type }: IncrementButtonProps) {
+  const quantityToAdd = useQuantityToAdd();
+
   const handleChangeQuantity = (type: 'increment' | 'decrement') => () => {
     const delta = type === 'increment' ? 1 : -1;
     setQuantityToAdd(quantityToAdd + delta);

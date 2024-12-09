@@ -1,22 +1,17 @@
-import { Article } from '../../../../@types/article';
+import {
+  setQuantitySelectionModalisOpen,
+  setArticleToAdd,
+} from '../../../../store/storeActions';
 
 interface OrderButtonProps {
-  setQuantityModalIsOpen: (isOpen: boolean) => void;
-  setArticleToAdd: (article: Article | null) => void;
   picture: string;
   name: string;
   price: number;
 }
 
-function OrderButton({
-  picture,
-  name,
-  price,
-  setQuantityModalIsOpen,
-  setArticleToAdd,
-}: OrderButtonProps) {
+function OrderButton({ picture, name, price }: OrderButtonProps) {
   const handleOrderButton = () => {
-    setQuantityModalIsOpen(true);
+    setQuantitySelectionModalisOpen(true);
     setArticleToAdd({ picture, name, price, quantity: 1 });
   };
 

@@ -1,29 +1,14 @@
-import { Article, ShoppingCart } from '../../../../@types/article';
+import { Pizza } from '../../../../@types/pizza';
 import OrderButton from './OrderButton';
 import PizzaInformation from './PizzaInformation';
 import PizzaPicture from './PizzaPicture';
 
 interface CardProps {
-  id: number;
-  name: string;
-  picture: string;
-  toppings: string;
-  price: number;
-  shoppingCart: ShoppingCart;
-  setShoppingCart: (shoppingCart: ShoppingCart) => void;
-  setQuantityModalIsOpen: (isOpen: boolean) => void;
-  setArticleToAdd: (article: Article | null) => void;
+  pizza: Pizza;
 }
 
-function PizzaCard({
-  id,
-  name,
-  picture,
-  toppings,
-  price,
-  setQuantityModalIsOpen,
-  setArticleToAdd,
-}: CardProps) {
+function PizzaCard({ pizza }: CardProps) {
+  const { id, name, picture, toppings, price } = pizza;
   return (
     <div
       id={`card-container-pizza-id${id}`}
@@ -31,13 +16,7 @@ function PizzaCard({
     >
       <PizzaPicture picture={picture} name={name} />
       <PizzaInformation name={name} toppings={toppings} price={price} />
-      <OrderButton
-        picture={picture}
-        name={name}
-        price={price}
-        setQuantityModalIsOpen={setQuantityModalIsOpen}
-        setArticleToAdd={setArticleToAdd}
-      />
+      <OrderButton picture={picture} name={name} price={price} />
     </div>
   );
 }
