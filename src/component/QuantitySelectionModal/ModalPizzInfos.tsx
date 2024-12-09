@@ -5,7 +5,7 @@ function ModalPizzInfos() {
   if (!articleToAdd) return null;
   const { name, price } = articleToAdd;
   return (
-    <div id="modal__info" className="flex flex-col items-center">
+    <div id="modal__infos" className="flex flex-col items-center">
       <h4
         id="modal__info-name"
         className="text-red-600 h-10 mb-4 px-4 text-2xl font-bold"
