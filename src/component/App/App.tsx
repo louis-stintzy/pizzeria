@@ -8,7 +8,7 @@ function App() {
     <>
       <div
         id="app-container"
-        className="flex flex-col bg-zinc-100 leading-relaxed font-sans"
+        className="flex flex-col min-h-screen bg-zinc-100 leading-relaxed font-sans"
       >
         <Header />
         <Main />

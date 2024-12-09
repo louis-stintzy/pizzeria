@@ -19,7 +19,7 @@ function QuantitySelectionModal() {
   }
 
   return (
-    <Modal className="bg-white rounded-lg px-8 pb-8 pt-4 flex flex-col items-center">
+    <Modal className="bg-white rounded-lg px-8 pb-8 pt-4 flex flex-col items-center backdrop:bg-zinc-800/50 ">
       <CloseModalButton />
       <ModalPizzImg />
       <ModalPizzInfos />
