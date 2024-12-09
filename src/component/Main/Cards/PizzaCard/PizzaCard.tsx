@@ -16,7 +16,7 @@ function PizzaCard({ pizza }: CardProps) {
     >
       <PizzaPicture picture={picture} name={name} />
       <PizzaInformation name={name} toppings={toppings} price={price} />
-      <OrderButton picture={picture} name={name} price={price} />
+      <OrderButton id={id} picture={picture} name={name} price={price} />
     </div>
   );
 }
