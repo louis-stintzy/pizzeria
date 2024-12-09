@@ -3,10 +3,10 @@ import { useQuantitySelectionModalisOpen } from '../../store/selectors';
 
 interface ModalProps {
   children: React.ReactNode;
-  modalStyle: React.CSSProperties;
+  className: string;
 }
 
-function Modal({ children, modalStyle }: ModalProps) {
+function Modal({ children, className }: ModalProps) {
   const modalRef = useRef<HTMLDialogElement>(null);
   const isOpen = useQuantitySelectionModalisOpen();
 
@@ -19,7 +19,7 @@ function Modal({ children, modalStyle }: ModalProps) {
   }, [isOpen]);
 
   return (
-    <dialog ref={modalRef} style={modalStyle}>
+    <dialog id="modal" ref={modalRef} className={className}>
       {children}
     </dialog>
   );

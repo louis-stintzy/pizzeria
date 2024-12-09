@@ -1,36 +1,24 @@
 import Modal from './Modal';
-import addToCart from '../../utils/addToCart';
+
 import QuantitySelectionButtons from './QuantitySelectionButtons';
 import {
   useArticleToAdd,
   useQuantitySelectionModalisOpen,
-  useQuantityToAdd,
-  useShoppingCart,
 } from '../../store/selectors';
 import {
   setQuantitySelectionModalisOpen,
   setQuantityToAdd,
-  setShoppingCart,
 } from '../../store/storeActions';
+import AddToCartButton from './AddToCartButton';
+import ModalPizzInfos from './ModalPizzInfos';
 
 function QuantitySelectionModal() {
   const quantitySelectionModalisOpen = useQuantitySelectionModalisOpen();
   const articleToAdd = useArticleToAdd();
-  const quantityToAdd = useQuantityToAdd();
-  const shoppingCart = useShoppingCart();
 
-  const handleCloseOrCancel = () => {
+  const handleModalClosing = () => {
     setQuantitySelectionModalisOpen(false);
     setQuantityToAdd(1);
-  };
-  const handleAddToCart = () => {
-    if (articleToAdd) {
-      articleToAdd.quantity = quantityToAdd;
-      const updatedShoppingCart = addToCart(articleToAdd, shoppingCart);
-      setShoppingCart(updatedShoppingCart);
-      handleCloseOrCancel();
-    }
-    handleCloseOrCancel();
   };
 
   const modalImgContainerStyle: React.CSSProperties = {
@@ -47,36 +35,17 @@ function QuantitySelectionModal() {
     overflow: 'hidden',
   };
 
-  const modalAddToCartButtonStyle: React.CSSProperties = {
-    width: '150px',
-    height: '40px',
-    backgroundColor: '#008815',
-    color: 'white',
-    border: 'none',
-    borderRadius: '0.5rem',
-  };
-
-  if (!quantitySelectionModalisOpen) {
+  if (!quantitySelectionModalisOpen || !articleToAdd) {
     return null;
   }
 
   return (
-    <Modal
-      modalStyle={{
-        width: '350px',
-        height: '450px',
-        backgroundColor: 'white',
-        borderRadius: '0.5rem',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <button type="button" onClick={handleCloseOrCancel}>
+    <Modal className="bg-white rounded-lg p-8 flex flex-col items-center">
+      <button type="button" onClick={handleModalClosing}>
         Cancel
       </button>
-      <div className="modal-img-container" style={modalImgContainerStyle}>
+
+      <div id="modal__img-container" style={modalImgContainerStyle}>
         <img
           src={articleToAdd?.picture}
           alt={articleToAdd?.name}
@@ -84,16 +53,10 @@ function QuantitySelectionModal() {
           style={modalImgContentStyle}
         />
       </div>
-      {articleToAdd?.name}
+
+      <ModalPizzInfos />
       <QuantitySelectionButtons />
-      <button
-        type="button"
-        className="modal-add-to-cart-button"
-        style={modalAddToCartButtonStyle}
-        onClick={handleAddToCart}
-      >
-        Ajouter au panier
-      </button>
+      <AddToCartButton />
     </Modal>
   );
 }

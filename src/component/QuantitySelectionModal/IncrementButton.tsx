@@ -13,20 +13,12 @@ function IncrementButton({ type }: IncrementButtonProps) {
     setQuantityToAdd(quantityToAdd + delta);
   };
 
-  const buttonStyle: React.CSSProperties = {
-    width: '35px',
-    height: '35px',
-    color: 'white',
-    borderRadius: '0.25rem',
-    backgroundColor: '#df0000',
-    border: 'none',
-  };
-
   return (
     <button
       type="button"
+      id={`modal__quantity-selection-buttons-${type}`}
+      className="h-8 w-8 bg-red-600 text-red-50 rounded "
       onClick={handleChangeQuantity(type)}
-      style={buttonStyle}
     >
       {type === 'increment' ? '+' : '-'}
     </button>
