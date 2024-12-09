@@ -1,12 +1,13 @@
-import useStore from '../../store/store';
+import { useQuantityToAdd } from '../../store/selectors';
+import { setQuantityToAdd } from '../../store/storeActions';
 
 interface IncrementButtonProps {
   type: 'increment' | 'decrement';
 }
 
 function IncrementButton({ type }: IncrementButtonProps) {
-  const quantityToAdd = useStore((state) => state.quantityToAdd);
-  const setQuantityToAdd = useStore((state) => state.setQuantityToAdd);
+  const quantityToAdd = useQuantityToAdd();
+
   const handleChangeQuantity = (type: 'increment' | 'decrement') => () => {
     const delta = type === 'increment' ? 1 : -1;
     setQuantityToAdd(quantityToAdd + delta);

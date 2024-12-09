@@ -1,8 +1,8 @@
-import useStore from '../../store/store';
+import { useQuantityToAdd } from '../../store/selectors';
 import IncrementButton from './IncrementButton';
 
 function QuantitySelectionButtons() {
-  const quantityToAdd = useStore((state) => state.quantityToAdd);
+  const quantityToAdd = useQuantityToAdd();
   const quantitySelectionButtonsContainerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'row',

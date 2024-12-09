@@ -1,20 +1,23 @@
-import useStore from '../../store/store';
 import Modal from './Modal';
 import addToCart from '../../utils/addToCart';
 import QuantitySelectionButtons from './QuantitySelectionButtons';
+import {
+  useArticleToAdd,
+  useQuantitySelectionModalisOpen,
+  useQuantityToAdd,
+  useShoppingCart,
+} from '../../store/selectors';
+import {
+  setQuantitySelectionModalisOpen,
+  setQuantityToAdd,
+  setShoppingCart,
+} from '../../store/storeActions';
 
 function QuantitySelectionModal() {
-  const quantitySelectionModalisOpen = useStore(
-    (state) => state.quantitySelectionModalisOpen
-  );
-  const articleToAdd = useStore((state) => state.articleToAdd);
-  const quantityToAdd = useStore((state) => state.quantityToAdd);
-  const shoppingCart = useStore((state) => state.shoppingCart);
-  const setQuantitySelectionModalisOpen = useStore(
-    (state) => state.setQuantitySelectionModalisOpen
-  );
-  const setQuantityToAdd = useStore((state) => state.setQuantityToAdd);
-  const setShoppingCart = useStore((state) => state.setShoppingCart);
+  const quantitySelectionModalisOpen = useQuantitySelectionModalisOpen();
+  const articleToAdd = useArticleToAdd();
+  const quantityToAdd = useQuantityToAdd();
+  const shoppingCart = useShoppingCart();
 
   const handleCloseOrCancel = () => {
     setQuantitySelectionModalisOpen(false);

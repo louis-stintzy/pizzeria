@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import useStore from '../../store/store';
+import { useQuantitySelectionModalisOpen } from '../../store/selectors';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ interface ModalProps {
 
 function Modal({ children, modalStyle }: ModalProps) {
   const modalRef = useRef<HTMLDialogElement>(null);
-  const isOpen = useStore((state) => state.quantitySelectionModalisOpen);
+  const isOpen = useQuantitySelectionModalisOpen();
 
   useEffect(() => {
     if (isOpen) {
