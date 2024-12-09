@@ -1,39 +1,24 @@
-import { Article } from '../../../../@types/article';
+import {
+  setQuantitySelectionModalisOpen,
+  setArticleToAdd,
+} from '../../../../store/storeActions';
 
 interface OrderButtonProps {
-  setQuantityModalIsOpen: (isOpen: boolean) => void;
-  setArticleToAdd: (article: Article | null) => void;
   picture: string;
   name: string;
   price: number;
 }
 
-function OrderButton({
-  picture,
-  name,
-  price,
-  setQuantityModalIsOpen,
-  setArticleToAdd,
-}: OrderButtonProps) {
+function OrderButton({ picture, name, price }: OrderButtonProps) {
   const handleOrderButton = () => {
-    setQuantityModalIsOpen(true);
+    setQuantitySelectionModalisOpen(true);
     setArticleToAdd({ picture, name, price, quantity: 1 });
   };
 
-  const cardOrderStyle: React.CSSProperties = {
-    width: '218px',
-    padding: '0.5rem 1rem',
-    backgroundColor: '#df0000',
-    color: 'white',
-    border: 'none',
-    borderRadius: '0.5rem',
-    cursor: 'pointer',
-    marginBottom: '0.5rem',
-  };
   return (
     <button
-      className="card-order"
-      style={cardOrderStyle}
+      id="card-order"
+      className="w-64 bg-red-600 text-red-50 border-none rounded-md my-4 h-8"
       onClick={handleOrderButton}
     >
       Commander

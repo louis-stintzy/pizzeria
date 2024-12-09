@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
+import { useQuantitySelectionModalisOpen } from '../../store/selectors';
 
 interface ModalProps {
-  isOpen: boolean;
   children: React.ReactNode;
-  modalStyle: React.CSSProperties;
-  onClose: () => void;
+  className: string;
 }
 
-function Modal({ isOpen, children, modalStyle, onClose }: ModalProps) {
+function Modal({ children, className }: ModalProps) {
   const modalRef = useRef<HTMLDialogElement>(null);
+  const isOpen = useQuantitySelectionModalisOpen();
 
   useEffect(() => {
     if (isOpen) {
@@ -19,7 +19,7 @@ function Modal({ isOpen, children, modalStyle, onClose }: ModalProps) {
   }, [isOpen]);
 
   return (
-    <dialog ref={modalRef} style={modalStyle} onCancel={onClose}>
+    <dialog id="modal" ref={modalRef} className={className}>
       {children}
     </dialog>
   );

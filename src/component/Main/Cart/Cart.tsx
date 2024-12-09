@@ -1,13 +1,10 @@
-import { ShoppingCart } from '../../../@types/article';
 import CartTotal from './CartTotal';
 import CartTitle from './CartTitle';
 import CartItems from './CartItems';
+import { useShoppingCart } from '../../../store/selectors';
 
-interface CartProps {
-  shoppingCart: ShoppingCart;
-}
-
-function Cart({ shoppingCart }: CartProps) {
+function Cart() {
+  const shoppingCart = useShoppingCart();
   const cartContainerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',

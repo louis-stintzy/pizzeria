@@ -1,57 +1,22 @@
-import { Article, ShoppingCart } from '../../../../@types/article';
+import { Pizza } from '../../../../@types/pizza';
 import OrderButton from './OrderButton';
 import PizzaInformation from './PizzaInformation';
 import PizzaPicture from './PizzaPicture';
 
 interface CardProps {
-  id: number;
-  name: string;
-  picture: string;
-  toppings: string;
-  price: number;
-  shoppingCart: ShoppingCart;
-  setShoppingCart: (shoppingCart: ShoppingCart) => void;
-  setQuantityModalIsOpen: (isOpen: boolean) => void;
-  setArticleToAdd: (article: Article | null) => void;
+  pizza: Pizza;
 }
 
-function PizzaCard({
-  id,
-  name,
-  picture,
-  toppings,
-  price,
-  setQuantityModalIsOpen,
-  setArticleToAdd,
-}: CardProps) {
-  const cardContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '282px',
-    height: '455px',
-    alignItems: 'center',
-    borderRadius: '0.5rem',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    backgroundColor: 'white',
-    overflow: 'hidden',
-  };
-
+function PizzaCard({ pizza }: CardProps) {
+  const { id, name, picture, toppings, price } = pizza;
   return (
     <div
-      className="card-container"
-      id={`pizzaId${id}`}
-      style={cardContainerStyle}
+      id={`card-container-pizza-id${id}`}
+      className="flex flex-col justify-between w-72 items-center rounded-md shadow-md bg-white overflow-hidden"
     >
       <PizzaPicture picture={picture} name={name} />
       <PizzaInformation name={name} toppings={toppings} price={price} />
-      <OrderButton
-        picture={picture}
-        name={name}
-        price={price}
-        setQuantityModalIsOpen={setQuantityModalIsOpen}
-        setArticleToAdd={setArticleToAdd}
-      />
+      <OrderButton picture={picture} name={name} price={price} />
     </div>
   );
 }

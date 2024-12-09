@@ -4,20 +4,9 @@ interface PizzaPictureProps {
 }
 
 function PizzaPicture({ name, picture }: PizzaPictureProps) {
-  const cardImgContainerStyle: React.CSSProperties = {
-    width: '100%',
-    height: '200px',
-    overflow: 'hidden',
-  };
-
-  const cardImgStyle: React.CSSProperties = {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  };
   return (
-    <div className="card-img-container" style={cardImgContainerStyle}>
-      <img src={picture} alt={name} className="card-img" style={cardImgStyle} />
+    <div id="card-img-container" className="w-full h-48 overflow-hidden">
+      <img src={picture} alt={`photo of a ${name} pizza`} id="card-img" />
     </div>
   );
 }

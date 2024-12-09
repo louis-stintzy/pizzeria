@@ -1,39 +1,19 @@
+import { useQuantityToAdd } from '../../store/selectors';
 import IncrementButton from './IncrementButton';
 
-interface QuantitySelectionButtonsProps {
-  quantityToAdd: number;
-  setQuantityToAdd: (quantity: number) => void;
-}
-
-function QuantitySelectionButtons({
-  quantityToAdd,
-  setQuantityToAdd,
-}: QuantitySelectionButtonsProps) {
-  const quantitySelectionButtonsContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100px',
-    margin: '1rem auto',
-  };
+function QuantitySelectionButtons() {
+  const quantityToAdd = useQuantityToAdd();
 
   return (
     <div
-      className="quantity-selection-buttons-container"
-      style={quantitySelectionButtonsContainerStyle}
+      id="modal__quantity-selection-buttons-container"
+      className="flex flex-row justify-between items-center w-28 mb-4"
     >
-      <IncrementButton
-        type="decrement"
-        quantityToAdd={quantityToAdd}
-        setQuantityToAdd={setQuantityToAdd}
-      />
-      <p>{quantityToAdd}</p>
-      <IncrementButton
-        type="increment"
-        quantityToAdd={quantityToAdd}
-        setQuantityToAdd={setQuantityToAdd}
-      />
+      <IncrementButton type="decrement" />
+      <p id="modal__quantity-selection-buttons-quantity" className="font-bold">
+        {quantityToAdd}
+      </p>
+      <IncrementButton type="increment" />
     </div>
   );
 }

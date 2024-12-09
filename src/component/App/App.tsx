@@ -1,45 +1,19 @@
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import Header from '../Header/Header';
-import { useState } from 'react';
 import QuantitySelectionModal from '../QuantitySelectionModal/QuantitySelectionModal';
-import { Article, ShoppingCart } from '../../@types/article';
 
 function App() {
-  const [quantitySelectionModalisOpen, setQuantitySelectionModalisOpen] =
-    useState(false);
-  const [articleToAdd, setArticleToAdd] = useState<Article | null>(null);
-  const [shoppingCart, setShoppingCart] = useState<ShoppingCart>({
-    articles: [],
-    total: 0,
-  });
-  const appContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: '#f5f5f5',
-    lineHeight: '1.6',
-    fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif, sans-serif',
-  };
   return (
     <>
-      <div className="app-container" style={appContainerStyle}>
+      <div
+        id="app-container"
+        className="flex flex-col min-h-screen bg-zinc-100 leading-relaxed font-sans"
+      >
         <Header />
-        <Main
-          setQuantityModalIsOpen={setQuantitySelectionModalisOpen}
-          setArticleToAdd={setArticleToAdd}
-          shoppingCart={shoppingCart}
-          setShoppingCart={setShoppingCart}
-        />
+        <Main />
         <Footer />
-        {quantitySelectionModalisOpen && (
-          <QuantitySelectionModal
-            isOpen={quantitySelectionModalisOpen}
-            article={articleToAdd}
-            shoppingCart={shoppingCart}
-            setShoppingCart={setShoppingCart}
-            onClose={() => setQuantitySelectionModalisOpen(false)}
-          />
-        )}
+        <QuantitySelectionModal />
       </div>
     </>
   );

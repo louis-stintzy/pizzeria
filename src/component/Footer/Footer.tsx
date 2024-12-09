@@ -1,19 +1,12 @@
 import footer from '../../constants/footer';
 
 function Footer() {
-  const footerContainerStyle: React.CSSProperties = {
-    color: '#fff',
-    backgroundColor: '#333',
-    padding: '20px 0',
-    textAlign: 'center',
-    borderTop: '1px solid #e9ecef',
-  };
-  const footerContentStyle: React.CSSProperties = {};
   return (
-    <div className="footer-container" style={footerContainerStyle}>
-      <p className="footer-content" style={footerContentStyle}>
-        {footer.content}
-      </p>
+    <div
+      id="footer-container"
+      className="text-red-50 bg-zinc-800 py-8 text-center h-24 mt-auto"
+    >
+      <p id="footer-content">{footer.content}</p>
     </div>
   );
 }
