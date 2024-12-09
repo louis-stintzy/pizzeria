@@ -10,7 +10,11 @@ function QuantitySelectionButtons() {
       className="flex flex-row justify-between items-center w-28 mb-4"
     >
       <IncrementButton type="decrement" />
-      <p id="modal__quantity-selection-buttons-quantity" className="font-bold">
+      <p
+        id="modal__quantity-selection-buttons-quantity"
+        data-testid="modal__quantity-selection-buttons-quantity"
+        className="font-bold"
+      >
         {quantityToAdd}
       </p>
       <IncrementButton type="increment" />

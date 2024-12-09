@@ -17,6 +17,7 @@ function IncrementButton({ type }: IncrementButtonProps) {
     <button
       type="button"
       id={`modal__quantity-selection-buttons-${type}`}
+      data-testid={`modal__quantity-selection-buttons-${type}`}
       className="h-8 w-8 bg-red-600 text-red-50 rounded "
       onClick={handleChangeQuantity(type)}
     >
