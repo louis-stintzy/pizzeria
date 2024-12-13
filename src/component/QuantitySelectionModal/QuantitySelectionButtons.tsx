@@ -7,7 +7,7 @@ function QuantitySelectionButtons() {
   return (
     <div
       id="modal__quantity-selection-buttons-container"
-      className="flex flex-row justify-between items-center w-28 mb-4"
+      className="mb-4 flex w-28 flex-row items-center justify-between"
     >
       <IncrementButton type="decrement" />
       <p

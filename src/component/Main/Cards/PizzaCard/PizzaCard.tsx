@@ -12,7 +12,7 @@ function PizzaCard({ pizza }: CardProps) {
   return (
     <div
       id={`card-container-pizza-id${id}`}
-      className="flex flex-col justify-between w-72 items-center rounded-md shadow-md bg-white overflow-hidden"
+      className="flex w-72 flex-col items-center justify-between overflow-hidden rounded-md bg-white shadow-md"
     >
       <PizzaPicture picture={picture} name={name} />
       <PizzaInformation name={name} toppings={toppings} price={price} />

@@ -8,13 +8,13 @@ function ModalPizzImg() {
   return (
     <div
       id="modal__img-container"
-      className="flex justify-center items-center w-64 h-52 mb-4 rounded-lg overflow-hidden"
+      className="mb-4 flex h-52 w-64 items-center justify-center overflow-hidden rounded-lg"
     >
       <img
         src={picture}
         alt={name}
         id="modal__img-content"
-        className="w-full h-full object-cover"
+        className="h-full w-full object-cover"
       />
     </div>
   );

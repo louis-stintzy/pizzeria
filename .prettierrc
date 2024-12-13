@@ -5,5 +5,5 @@
   "endOfLine": "lf",
   "tabWidth": 2,
   "useTabs": false,
-  "indentStyle": "space"
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

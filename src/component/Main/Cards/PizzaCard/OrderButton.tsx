@@ -20,7 +20,7 @@ function OrderButton({ id, picture, name, price }: OrderButtonProps) {
     <button
       id="card-order"
       data-testid={`order-button-pizzaId-${id}`}
-      className="w-64 bg-red-600 text-red-50 border-none rounded-md my-4 h-8"
+      className="my-4 h-8 w-64 rounded-md border-none bg-red-600 text-red-50"
       onClick={handleOrderButton}
     >
       Commander

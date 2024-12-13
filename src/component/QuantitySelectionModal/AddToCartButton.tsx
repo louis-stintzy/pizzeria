@@ -26,7 +26,7 @@ function AddToCartButton() {
       type="button"
       id="modal__add-to-cart-button"
       data-testid="modal__add-to-cart-button"
-      className="w-44 h-10 bg-green-700 text-red-50 rounded font-bold"
+      className="h-10 w-44 rounded bg-green-700 font-bold text-red-50"
       onClick={handleAddToCart}
     >
       Ajouter au panier
