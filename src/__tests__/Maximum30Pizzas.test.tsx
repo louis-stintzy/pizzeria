@@ -10,13 +10,9 @@ beforeAll(() => {
 });
 
 test(`does not allow ordering less than 1 pizza'`, () => {
-  // Ouvre la modal et récupère des boutons (et quantity)
+  // Ouvre la modal, vérifie la présence des éléments et récupère des boutons (et quantity)
   const { incrementButton, addToCartButton, quantity } =
-    OpenModalAndRetrieveButtons(1);
-
-  // Vérifie la présence des boutons 'plus' et 'ajouter au panier'
-  expect(incrementButton).toBeInTheDocument();
-  expect(addToCartButton).toBeInTheDocument();
+    OpenModalAndRetrieveButtons(1, true);
 
   // Clique sur le bouton d'incrémentation un nombre alétoire de fois (entre 30 et 50), vérifie que le bouton 'plus' est désactivé et vérifie la quantité
   const randomClicks = Math.random() * (50 - 30) + 30;

@@ -10,14 +10,9 @@ beforeAll(() => {
 });
 
 test(`updates global state when "Commander" is clicked for a pizza'`, () => {
-  // Ouvre la modal et récupère des boutons (et quantity)
+  // Ouvre la modal, vérifie la présence des éléments et récupère des boutons (et quantity)
   const { incrementButton, decrementButton, addToCartButton, quantity } =
-    OpenModalAndRetrieveButtons(1);
-
-  // Vérifie la présences des boutons de la modal
-  expect(incrementButton).toBeInTheDocument();
-  expect(decrementButton).toBeInTheDocument();
-  expect(addToCartButton).toBeInTheDocument();
+    OpenModalAndRetrieveButtons(1, true);
 
   // Clique sur les boutons d'incrémentation / de décrémentation et vérifie la quantité
   fireEvent.click(incrementButton); // 1+1=2

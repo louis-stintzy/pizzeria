@@ -11,14 +11,9 @@ beforeAll(() => {
 });
 
 test(`does not allow ordering less than 1 pizza'`, () => {
-  // Ouvre la modal et récupère des boutons (et quantity)
+  // Ouvre la modal, vérifie la présence des éléments et récupère des boutons (et quantity)
   const { decrementButton, addToCartButton, quantity } =
-    OpenModalAndRetrieveButtons(1);
-
-  // Vérifie la présence du bouton 'moins', qu'il soit bien désactivé, et la présence du bouton 'ajouter au panier'
-  expect(decrementButton).toBeInTheDocument();
-  expect(decrementButton).toBeDisabled();
-  expect(addToCartButton).toBeInTheDocument();
+    OpenModalAndRetrieveButtons(1, true);
 
   // Clique sur le bouton de décrémentation un nombre alétoire de fois (entre 0 et 50) et vérifie la quantité
   const randomClicks = Math.floor(Math.random() * 50);
@@ -26,6 +21,7 @@ test(`does not allow ordering less than 1 pizza'`, () => {
     fireEvent.click(decrementButton);
   }
   expect(quantity.textContent).toBe('1');
+  expect(decrementButton).toBeDisabled();
 
   // Clique sur le bouton "Ajouter au panier" et vérifie le shopping cart
   fireEvent.click(addToCartButton);

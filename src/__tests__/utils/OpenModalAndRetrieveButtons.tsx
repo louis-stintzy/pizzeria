@@ -1,12 +1,16 @@
+import { expect } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import App from '../../component/App/App';
 
-export function OpenModalAndRetrieveButtons(pizzaId: number) {
+export function OpenModalAndRetrieveButtons(
+  pizzaId: number,
+  renderApp: boolean
+) {
   // Simule le rendu de l'application
-  render(<App />);
+  if (renderApp) render(<App />);
 
-  // Récupère le bouton de commande de la première pizza et clique dessus
+  // Récupère le bouton de commande et clique dessus
   const orderButton = screen.getByTestId(`order-button-pizzaId-${pizzaId}`);
   fireEvent.click(orderButton);
 
@@ -21,6 +25,13 @@ export function OpenModalAndRetrieveButtons(pizzaId: number) {
     'modal__quantity-selection-buttons-quantity'
   );
   const addToCartButton = screen.getByTestId('modal__add-to-cart-button');
+
+  expect(decrementButton).toBeInTheDocument();
+  expect(decrementButton).toBeDisabled();
+  expect(quantity).toBeInTheDocument();
+  expect(quantity.textContent).toBe('1');
+  expect(incrementButton).toBeInTheDocument();
+  expect(addToCartButton).toBeInTheDocument();
 
   return { incrementButton, decrementButton, quantity, addToCartButton };
 }
