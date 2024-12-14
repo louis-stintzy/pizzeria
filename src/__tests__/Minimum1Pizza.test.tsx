@@ -9,34 +9,31 @@ beforeAll(() => {
   HTMLDialogElement.prototype.showModal = vi.fn();
 });
 
-test(`updates global state when "Commander" is clicked for a pizza'`, () => {
+test(`does not allow ordering less than 1 pizza'`, () => {
   render(<App />);
 
   // Récupère le bouton de commande de la première pizza et clique dessus
   const orderButton = screen.getByTestId('order-button-pizzaId-1');
   fireEvent.click(orderButton);
 
-  // Récupère et vérifie la présences des boutons de la modal
-  const incrementButton = screen.getByTestId(
-    'modal__quantity-selection-buttons-increment'
-  );
+  // Récupère et vérifie la présence des boutons 'moins' et 'ajouter au panier'
   const decrementButton = screen.getByTestId(
     'modal__quantity-selection-buttons-decrement'
   );
   const addToCartButton = screen.getByTestId('modal__add-to-cart-button');
-  expect(incrementButton).toBeInTheDocument();
   expect(decrementButton).toBeInTheDocument();
+  expect(decrementButton).toBeDisabled();
   expect(addToCartButton).toBeInTheDocument();
 
-  // Clique sur les boutons d'incrémentation / de décrémentation et vérifie la quantité
+  // Clique sur le bouton de décrémentation un nombre alétoire de fois (entre 0 et 50) et vérifie la quantité
   const quantity = screen.getByTestId(
     'modal__quantity-selection-buttons-quantity'
   );
-  fireEvent.click(incrementButton);
-  fireEvent.click(incrementButton);
-  expect(quantity.textContent).toBe('3');
-  fireEvent.click(decrementButton);
-  expect(quantity.textContent).toBe('2');
+  const randomClicks = Math.floor(Math.random() * 50);
+  for (let i = 0; i < randomClicks; i++) {
+    fireEvent.click(decrementButton);
+  }
+  expect(quantity.textContent).toBe('1');
 
   // Clique sur le bouton "Ajouter au panier" et vérifie le shopping cart
   fireEvent.click(addToCartButton);
@@ -47,10 +44,10 @@ test(`updates global state when "Commander" is clicked for a pizza'`, () => {
         picture: '/src/assets/margherita.jpg',
         name: 'Margherita',
         price: 12.9,
-        quantity: 2,
+        quantity: 1,
       },
     ],
-    total: 25.8,
+    total: 12.9,
   };
   expect(shoppingCart).toEqual(expectedShoppingCart);
 
@@ -58,7 +55,6 @@ test(`updates global state when "Commander" is clicked for a pizza'`, () => {
   const { quantitySelectionModalisOpen } = useStore.getState();
   expect(quantitySelectionModalisOpen).toBe(false);
   expect(screen.queryByTestId('pizza-modal')).not.toBeInTheDocument();
-  expect(incrementButton).not.toBeInTheDocument();
   expect(decrementButton).not.toBeInTheDocument();
   expect(addToCartButton).not.toBeInTheDocument();
 });
