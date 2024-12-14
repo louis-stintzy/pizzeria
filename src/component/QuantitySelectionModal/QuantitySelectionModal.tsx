@@ -19,11 +19,11 @@ function QuantitySelectionModal() {
   }
 
   return (
-    <Modal className="flex flex-col items-center rounded-lg bg-white px-8 pb-8 pt-4 backdrop:bg-zinc-800/50">
+    <Modal className="flex flex-col items-center rounded-lg bg-white backdrop:bg-zinc-800/50">
       <CloseModalButton />
       <ModalPizzImg />
       <ModalPizzInfos />
-      <QuantitySelectionButtons />
+      <QuantitySelectionButtons range={{ min: 1, max: 30 }} />
       <AddToCartButton />
     </Modal>
   );

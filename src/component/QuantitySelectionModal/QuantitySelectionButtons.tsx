@@ -1,7 +1,11 @@
 import { useQuantityToAdd } from '../../store/selectors';
 import IncrementButton from './IncrementButton';
 
-function QuantitySelectionButtons() {
+interface QuantitySelectionButtonsProps {
+  range: { min: number; max: number };
+}
+
+function QuantitySelectionButtons({ range }: QuantitySelectionButtonsProps) {
   const quantityToAdd = useQuantityToAdd();
 
   return (
@@ -9,7 +13,7 @@ function QuantitySelectionButtons() {
       id="modal__quantity-selection-buttons-container"
       className="mb-4 flex w-28 flex-row items-center justify-between"
     >
-      <IncrementButton type="decrement" />
+      <IncrementButton type="decrement" range={range} />
       <p
         id="modal__quantity-selection-buttons-quantity"
         data-testid="modal__quantity-selection-buttons-quantity"
@@ -17,7 +21,7 @@ function QuantitySelectionButtons() {
       >
         {quantityToAdd}
       </p>
-      <IncrementButton type="increment" />
+      <IncrementButton type="increment" range={range} />
     </div>
   );
 }
