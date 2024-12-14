@@ -19,7 +19,11 @@ function Cart() {
     zIndex: '1000',
   };
   return (
-    <div className="cart-container" style={cartContainerStyle}>
+    <div
+      className="cart-container"
+      style={cartContainerStyle}
+      data-testid={`cart-container`}
+    >
       <CartTitle />
       <CartItems articles={shoppingCart.articles} />
       <CartTotal amount={shoppingCart.total} />

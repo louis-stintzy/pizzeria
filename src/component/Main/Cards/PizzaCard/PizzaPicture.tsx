@@ -5,7 +5,7 @@ interface PizzaPictureProps {
 
 function PizzaPicture({ name, picture }: PizzaPictureProps) {
   return (
-    <div id="card-img-container" className="w-full h-48 overflow-hidden">
+    <div id="card-img-container" className="h-48 w-full overflow-hidden">
       <img src={picture} alt={`photo of a ${name} pizza`} id="card-img" />
     </div>
   );

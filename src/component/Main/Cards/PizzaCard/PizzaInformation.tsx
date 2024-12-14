@@ -8,9 +8,9 @@ function PizzaInformation({ name, toppings, price }: PizzaInformationProps) {
   return (
     <div
       id="card-info"
-      className="flex flex-col justify-between h-44 w-full p-4"
+      className="flex h-44 w-full flex-col justify-between p-4"
     >
-      <h4 id="card-info__name" className="text-red-600 px-4 text-2xl font-bold">
+      <h4 id="card-info__name" className="px-4 text-2xl font-bold text-red-600">
         {name}
       </h4>
       <p id="card-info__toppings" className="px-4 text-base text-zinc-600">

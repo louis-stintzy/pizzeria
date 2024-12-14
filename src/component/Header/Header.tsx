@@ -4,9 +4,9 @@ function Header() {
   return (
     <div
       id="header-container"
-      className="bg-red-600 text-center p-8 h-40 flex flex-col justify-around"
+      className="flex h-40 flex-col justify-around bg-red-600 p-8 text-center"
     >
-      <h1 id="header-title" className="text-red-50 text-4xl font-bold">
+      <h1 id="header-title" className="text-4xl font-bold text-red-50">
         {header.title}
       </h1>
       <h2 id="header-subtitle" className="text-red-50">

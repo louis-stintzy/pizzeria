@@ -7,13 +7,14 @@ import handleModalClosing from '../../utils/handleModalClosing';
 function CloseModalButton() {
   return (
     <button
+      id="modal__close-button"
       type="button"
-      className="mb-4 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+      className="mb-4 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
       data-modal-hide="default-modal"
       onClick={handleModalClosing}
     >
       <svg
-        className="w-3 h-3"
+        className="h-3 w-3"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

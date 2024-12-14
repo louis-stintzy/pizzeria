@@ -14,7 +14,7 @@ function CartTotal({ amount }: CartTotalProps) {
   return (
     <p className="cart-total" style={cartTotalStyle}>{`Total : ${amount.toFixed(
       2
-    )}`}</p>
+    )} €`}</p>
   );
 }
 

@@ -4,12 +4,13 @@ import {
 } from '../../../../store/storeActions';
 
 interface OrderButtonProps {
+  id: number;
   picture: string;
   name: string;
   price: number;
 }
 
-function OrderButton({ picture, name, price }: OrderButtonProps) {
+function OrderButton({ id, picture, name, price }: OrderButtonProps) {
   const handleOrderButton = () => {
     setQuantitySelectionModalisOpen(true);
     setArticleToAdd({ picture, name, price, quantity: 1 });
@@ -18,7 +19,8 @@ function OrderButton({ picture, name, price }: OrderButtonProps) {
   return (
     <button
       id="card-order"
-      className="w-64 bg-red-600 text-red-50 border-none rounded-md my-4 h-8"
+      data-testid={`order-button-pizzaId-${id}`}
+      className="my-4 h-8 w-64 rounded-md border-none bg-red-600 text-red-50"
       onClick={handleOrderButton}
     >
       Commander

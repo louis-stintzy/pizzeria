@@ -6,7 +6,7 @@ function Cards() {
   return (
     <div
       id="pizzas-list"
-      className="flex flex-wrap justify-start gap-8 max-w-7xl"
+      className="flex max-w-7xl flex-wrap justify-start gap-8"
     >
       {pizzas.map((pizza: Pizza) => (
         <PizzaCard key={pizza.id} pizza={pizza} />

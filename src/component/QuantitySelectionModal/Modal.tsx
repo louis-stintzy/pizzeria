@@ -30,7 +30,9 @@ function Modal({ children, className }: ModalProps) {
       className={className}
       onClick={(e) => handleModalClick(e)}
     >
-      {children}
+      <div className="flex h-full w-full flex-col items-center px-8 pb-8 pt-4">
+        {children}
+      </div>
     </dialog>
   );
 }
