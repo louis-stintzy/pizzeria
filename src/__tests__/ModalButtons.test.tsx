@@ -1,8 +1,8 @@
 import { test, expect, beforeAll, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
-
-import App from '../component/App/App';
+import { fireEvent } from '@testing-library/react';
 import useStore from '../store/store';
+import { CheckModalClosure } from './utils/ChekModalClosure';
+import { OpenModalAndRetrieveButtons } from './utils/OpenModalAndRetrieveButtons';
 
 // Mock la méthode showModal pour éviter les erreurs
 beforeAll(() => {
@@ -10,32 +10,20 @@ beforeAll(() => {
 });
 
 test(`updates global state when "Commander" is clicked for a pizza'`, () => {
-  render(<App />);
+  // Ouvre la modal et récupère des boutons (et quantity)
+  const { incrementButton, decrementButton, addToCartButton, quantity } =
+    OpenModalAndRetrieveButtons(1);
 
-  // Récupère le bouton de commande de la première pizza et clique dessus
-  const orderButton = screen.getByTestId('order-button-pizzaId-1');
-  fireEvent.click(orderButton);
-
-  // Récupère et vérifie la présences des boutons de la modal
-  const incrementButton = screen.getByTestId(
-    'modal__quantity-selection-buttons-increment'
-  );
-  const decrementButton = screen.getByTestId(
-    'modal__quantity-selection-buttons-decrement'
-  );
-  const addToCartButton = screen.getByTestId('modal__add-to-cart-button');
+  // Vérifie la présences des boutons de la modal
   expect(incrementButton).toBeInTheDocument();
   expect(decrementButton).toBeInTheDocument();
   expect(addToCartButton).toBeInTheDocument();
 
   // Clique sur les boutons d'incrémentation / de décrémentation et vérifie la quantité
-  const quantity = screen.getByTestId(
-    'modal__quantity-selection-buttons-quantity'
-  );
-  fireEvent.click(incrementButton);
-  fireEvent.click(incrementButton);
+  fireEvent.click(incrementButton); // 1+1=2
+  fireEvent.click(incrementButton); // 2+1=3
   expect(quantity.textContent).toBe('3');
-  fireEvent.click(decrementButton);
+  fireEvent.click(decrementButton); // 3-1=2
   expect(quantity.textContent).toBe('2');
 
   // Clique sur le bouton "Ajouter au panier" et vérifie le shopping cart
@@ -55,10 +43,5 @@ test(`updates global state when "Commander" is clicked for a pizza'`, () => {
   expect(shoppingCart).toEqual(expectedShoppingCart);
 
   // Vérifie que la modal est fermée
-  const { quantitySelectionModalisOpen } = useStore.getState();
-  expect(quantitySelectionModalisOpen).toBe(false);
-  expect(screen.queryByTestId('pizza-modal')).not.toBeInTheDocument();
-  expect(incrementButton).not.toBeInTheDocument();
-  expect(decrementButton).not.toBeInTheDocument();
-  expect(addToCartButton).not.toBeInTheDocument();
+  CheckModalClosure();
 });

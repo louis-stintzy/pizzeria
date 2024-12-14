@@ -1,8 +1,8 @@
 import { test, expect, beforeAll, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
-
-import App from '../component/App/App';
+import { fireEvent } from '@testing-library/react';
 import useStore from '../store/store';
+import { CheckModalClosure } from './utils/ChekModalClosure';
+import { OpenModalAndRetrieveButtons } from './utils/OpenModalAndRetrieveButtons';
 
 // Mock la méthode showModal pour éviter les erreurs
 beforeAll(() => {
@@ -10,28 +10,20 @@ beforeAll(() => {
 });
 
 test(`does not allow ordering less than 1 pizza'`, () => {
-  render(<App />);
+  // Ouvre la modal et récupère des boutons (et quantity)
+  const { incrementButton, addToCartButton, quantity } =
+    OpenModalAndRetrieveButtons(1);
 
-  // Récupère le bouton de commande de la première pizza et clique dessus
-  const orderButton = screen.getByTestId('order-button-pizzaId-1');
-  fireEvent.click(orderButton);
-
-  // Récupère et vérifie la présence des boutons 'plus' et 'ajouter au panier'
-  const incrementButton = screen.getByTestId(
-    'modal__quantity-selection-buttons-increment'
-  );
-  const addToCartButton = screen.getByTestId('modal__add-to-cart-button');
+  // Vérifie la présence des boutons 'plus' et 'ajouter au panier'
   expect(incrementButton).toBeInTheDocument();
   expect(addToCartButton).toBeInTheDocument();
 
-  // Clique sur le bouton d'incrémentation un nombre alétoire de fois (entre 30 et 50) et vérifie la quantité
-  const quantity = screen.getByTestId(
-    'modal__quantity-selection-buttons-quantity'
-  );
+  // Clique sur le bouton d'incrémentation un nombre alétoire de fois (entre 30 et 50), vérifie que le bouton 'plus' est désactivé et vérifie la quantité
   const randomClicks = Math.random() * (50 - 30) + 30;
   for (let i = 0; i < randomClicks; i++) {
     fireEvent.click(incrementButton);
   }
+  expect(incrementButton).toBeDisabled();
   expect(quantity.textContent).toBe('30');
 
   // Clique sur le bouton "Ajouter au panier" et vérifie le shopping cart
@@ -51,9 +43,5 @@ test(`does not allow ordering less than 1 pizza'`, () => {
   expect(shoppingCart).toEqual(expectedShoppingCart);
 
   // Vérifie que la modal est fermée
-  const { quantitySelectionModalisOpen } = useStore.getState();
-  expect(quantitySelectionModalisOpen).toBe(false);
-  expect(screen.queryByTestId('pizza-modal')).not.toBeInTheDocument();
-  expect(incrementButton).not.toBeInTheDocument();
-  expect(addToCartButton).not.toBeInTheDocument();
+  CheckModalClosure();
 });
