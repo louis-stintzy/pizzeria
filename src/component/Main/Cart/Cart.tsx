@@ -5,23 +5,10 @@ import { useShoppingCart } from '../../../store/selectors';
 
 function Cart() {
   const shoppingCart = useShoppingCart();
-  const cartContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    width: '300px',
-    height: '100%',
-    marginLeft: '2rem',
-    backgroundColor: 'white',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    borderRadius: '10px',
-    padding: '10px',
-    zIndex: '1000',
-  };
   return (
     <div
-      className="cart-container"
-      style={cartContainerStyle}
+      id="cart-container"
+      className="order-first mb-8 flex h-full w-72 flex-col justify-between rounded-md bg-white p-4 shadow-md md:sticky md:top-4 md:order-2 md:w-96"
       data-testid={`cart-container`}
     >
       <CartTitle />
