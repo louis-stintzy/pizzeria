@@ -2,14 +2,11 @@ import Cards from './Cards/Cards';
 import Cart from './Cart/Cart';
 
 function Main() {
-  const mainContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '10px',
-    margin: '2rem',
-  };
   return (
-    <div className="main-container" style={mainContainerStyle}>
+    <div
+      id="main-container"
+      className="m-8 flex flex-col items-center md:flex-row md:items-start md:gap-4"
+    >
       <Cards />
       <Cart />
     </div>

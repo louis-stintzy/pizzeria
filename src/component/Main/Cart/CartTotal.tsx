@@ -3,18 +3,11 @@ interface CartTotalProps {
 }
 
 function CartTotal({ amount }: CartTotalProps) {
-  const cartTotalStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
-    color: '#df0000',
-    marginTop: '1rem',
-  };
   return (
-    <p className="cart-total" style={cartTotalStyle}>{`Total : ${amount.toFixed(
-      2
-    )} €`}</p>
+    <p
+      id="cart-total"
+      className="mt-4 flex justify-end text-xl font-bold text-red-600"
+    >{`Total : ${amount.toFixed(2)} €`}</p>
   );
 }
 

@@ -6,9 +6,8 @@ interface CartItemsProps {
 }
 
 function CartItems({ articles }: CartItemsProps) {
-  const cartItemsContainerStyle: React.CSSProperties = {};
   return (
-    <div className="cart-items-container" style={cartItemsContainerStyle}>
+    <div id="cart-items-container">
       {articles.map((article) => (
         <CartItem
           key={article.name}

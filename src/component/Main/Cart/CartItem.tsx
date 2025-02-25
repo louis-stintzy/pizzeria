@@ -5,17 +5,12 @@ interface CartItemProps {
 }
 
 function CartItem({ name, price, quantity }: CartItemProps) {
-  const cartItemStyle: React.CSSProperties = {
-    color: '#666',
-    display: 'flex',
-    justifyContent: 'space-between',
-    height: '25px',
-    padding: '8px 0',
-    margin: '5px 0',
-  };
   return (
     <>
-      <p className="cart-item" style={cartItemStyle}>
+      <p
+        id="cart-item"
+        className="my-1 flex h-6 justify-between py-2 text-zinc-800"
+      >
         <span>
           {name} x {quantity}{' '}
         </span>
